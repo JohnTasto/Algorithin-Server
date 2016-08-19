@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 // Main starting point of the application
 import express from 'express'
 import http from 'http'
