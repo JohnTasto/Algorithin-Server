@@ -1,10 +1,12 @@
 import mongoose, { Schema } from 'mongoose'
 import bcrypt from 'bcrypt-nodejs'
 
+
 const userSchema = new Schema({
   email: { type: String, unique: true, lowercase: true },
   password: String
 })
+
 
 userSchema.pre('save', function(next) {
   const user = this
@@ -22,6 +24,7 @@ userSchema.pre('save', function(next) {
   })
 })
 
+
 userSchema.methods.comparePassword = function(candidatePassword, callback) {
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
     if (err) { return callback(err) }
@@ -29,5 +32,6 @@ userSchema.methods.comparePassword = function(candidatePassword, callback) {
     callback(null, isMatch)
   })
 }
+
 
 export default mongoose.model('user', userSchema)

@@ -1,9 +1,12 @@
 import passport from 'passport'
-import User from '../models/user'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
 import LocalStrategy from 'passport-local'
 
+import User from '../models/user'
+
+
 const localOptions = { usernameField: 'email' }
+
 const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
   User.findOne({ email: email }, (err, user) => {
     if (err) { return done(err) }
@@ -17,6 +20,7 @@ const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
     })
   })
 })
+
 
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
@@ -34,6 +38,7 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
     }
   })
 })
+
 
 passport.use(jwtLogin)
 passport.use(localLogin)

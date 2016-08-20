@@ -1,4 +1,5 @@
 import jwt from 'jwt-simple'
+
 import User from '../models/user'
 
 
@@ -8,10 +9,12 @@ function tokenForUser(user) {
   return jwt.encode({ sub: user.id, iat: timestamp }, process.env.JWT_SECRET)
 }
 
+
 export const signin = (req, res, next) => {
   res.send({ token: tokenForUser(req.user) })
   // User has already had their email and password authed by previous middleware
 }
+
 
 export const signup = (req, res, next) => {
   const email = req.body.email
@@ -35,7 +38,6 @@ export const signup = (req, res, next) => {
 
     user.save(err => {
       if (err) { return next(err) }
-
       res.json({ token: tokenForUser(user) })
     })
   })

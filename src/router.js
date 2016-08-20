@@ -1,6 +1,8 @@
 import passport from 'passport'
-import { signin, signup } from './controllers/authentication'
+
 import passportService from './services/passport'
+import { signin, signup } from './controllers/authentication'
+
 
 // don't create sessions since we're authenticating with JWTs every time
 const requireAuth = passport.authenticate('jwt', { session: false })
