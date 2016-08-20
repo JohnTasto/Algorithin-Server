@@ -25,6 +25,7 @@ const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
   secretOrKey: process.env.JWT_SECRET,
+  algorithms: ["HS256"],
 }
 
 const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {

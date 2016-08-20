@@ -6,7 +6,11 @@ import User from '../models/user'
 function tokenForUser(user) {
   const timestamp = new Date().getTime()
   // sub = subject, iat = issued at time
-  return jwt.encode({ sub: user.id, iat: timestamp }, process.env.JWT_SECRET)
+  return jwt.encode(
+    { sub: user.id, iat: timestamp },
+    process.env.JWT_SECRET,
+    'HS256'
+  )
 }
 
 
