@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 import express from 'express'
 import http from 'http'
 import bodyParser from 'body-parser'
@@ -7,7 +5,6 @@ import morgan from 'morgan'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import router from './router'
-
 
 const app = express()
 
