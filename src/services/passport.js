@@ -35,7 +35,7 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
     if (err)   return done(err, false)
     if (!user) return done(null, false)
 
-    return  done(null, user)
+    return done(null, user)
   })
 })
 
