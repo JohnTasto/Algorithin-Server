@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 import express from 'express'
 import http from 'http'
 import bodyParser from 'body-parser'
@@ -8,7 +10,7 @@ import router from './router'
 
 const app = express()
 
-mongoose.connect('mongodb://localhost:auth/auth')
+mongoose.connect(process.env.MONGO_DB)
 
 app.use(morgan('combined'))
 app.use(cors())
